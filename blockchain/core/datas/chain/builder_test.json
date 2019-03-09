@@ -1,0 +1,12 @@
+{
+    "builder": {
+        "1": {
+            "hash": "58602dd46723d79abc6542320532bf4653e6feeddca11a707871e1830ddebdaa",
+            "index": 1,
+            "expeditor": "symba",
+            "destinator": "wako",
+            "amount": "42",
+            "timestamp": "Sat, 09 Mar 2019 22:50:37"
+        }
+    }
+}

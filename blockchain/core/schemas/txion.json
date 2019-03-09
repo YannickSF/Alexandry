@@ -1,0 +1,12 @@
+{
+  "type" : "object",
+  "properties" : {
+    "index" : {"type" : "number"},
+    "from" : {"type" : "string"},
+    "to" : {"type" : "string"},
+    "amount" : {"type" : "string",
+    "timestamp" : {"type" : "string"},
+    "hash" : {"type" : "string"}}
+  },
+  "required": ["hash","timestamp"]
+}

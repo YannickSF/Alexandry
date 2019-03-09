@@ -1,0 +1,11 @@
+{
+  "type" : "object",
+  "properties" : {
+    "index" : {"type" : "number"},
+    "hash" : {"type" : "string"},
+    "data" : {"type" : "array"},
+    "timestamp" : {"type" : "string"},
+    "last_hash" : {"type" : "string"}
+  },
+  "required": ["hash","timestamp"]
+}

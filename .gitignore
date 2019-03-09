@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+blockchain/\.DS_Store
+
+blockchain/core/\.DS_Store
