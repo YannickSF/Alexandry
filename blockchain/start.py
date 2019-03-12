@@ -29,12 +29,26 @@ class Txion(Resource):
             return {'Txion': client.blockchain.get_txion_by_hash(hash)}
 
     def post(self):
-        expeditor = request.form['from']
-        destinator = request.form['to']
+        expeditor = request.form['expeditor']
+        destinator = request.form['destinator']
         amount = request.form['amount']
 
         tx = client.blockchain.create_txion(expeditor, destinator, amount)
         return {'Txion': tx}
+
+
+class Telegraph(Resource):
+    def get(self, hash=''):
+        if hash != '':
+            return {'Telegraph': client.blockchain.get_telegraph_by_hash(hash)}
+
+    def post(self):
+        expeditor = request.form['expeditor']
+        destinator = request.form['destinator']
+        message = request.form['message']
+
+        tlgrph = client.blockchain.create_telegraph(expeditor, destinator, message)
+        return {'Telegraph': tlgrph}
 
 
 class TrxBlock(Resource):
@@ -62,6 +76,7 @@ class TrxTxion(Resource):
 api.add_resource(Blockchain, '/')
 api.add_resource(Block, '/block/<string:hash>')
 api.add_resource(Txion, '/txion', '/txion/<string:hash>')
+api.add_resource(Telegraph, '/telegraph', '/telegraph/<string:hash>')
 
 api.add_resource(TrxBlock, CONFIG.TRX_URI_BLOCK)
 api.add_resource(TrxTxion, CONFIG.TRX_URI_TXION)

@@ -4,6 +4,7 @@ from tinydb import TinyDB, Query
 # remove 'Main.' on linux terminal
 from blockchain.core.objects.block import Block
 from blockchain.core.objects.txion import Txion
+from blockchain.core.objects.telegraph import Telegraph
 from blockchain.settings import CONFIG
 
 
@@ -66,5 +67,26 @@ class Blockchain:
         return self.txion_ledger.search(QTxion.hash == hash)
 
     def insert_txion(self, txion):
+        self.txion_ledger.insert(txion)
+
+    """ Telegraph """
+    def create_telegraph(self, expeditor, destinator, message):
+        tmpstp = datetime.datetime.now()
+
+        new_telegraph = Telegraph(expeditor,
+                                  destinator,
+                                  message,
+                                  tmpstp.strftime('%a, %d %b %Y %H:%M:%S'))
+
+        self.builder.insert(new_telegraph.__repr__())
+        CONFIG.blockchain_logger.info('NEW TELEGRAPH : [' + new_telegraph.hash + ']')
+
+        return new_telegraph.__repr__()
+
+    def get_telegraph_by_hash(self, hash):
+        QTxion = Query()
+        return self.txion_ledger.search(QTxion.hash == hash)
+
+    def insert_telegraph(self, txion):
         self.txion_ledger.insert(txion)
 

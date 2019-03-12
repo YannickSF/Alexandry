@@ -7,6 +7,20 @@
             "destinator": "wako",
             "amount": "42",
             "timestamp": "Sat, 09 Mar 2019 22:50:37"
+        },
+        "2": {
+            "hash": "e9f7fa20fa1da71c7e0300a3edf82ff2830a6a9df939dd08116c40e6ae4c6bff",
+            "expeditor": "me",
+            "destinator": "wako",
+            "message": "Hello there ! ",
+            "timestamp": "Tue, 12 Mar 2019 13:12:18"
+        },
+        "3": {
+            "hash": "82f5784cbbec7b15c513fedf8e79db3a9012978e83010014e3b1ac2117d24bb1",
+            "expeditor": "me",
+            "destinator": "wako",
+            "message": "Comment va tu ? ",
+            "timestamp": "Tue, 12 Mar 2019 13:14:00"
         }
     }
 }

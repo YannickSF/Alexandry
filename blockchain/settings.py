@@ -4,6 +4,7 @@ import logging
 from logging import FileHandler, Formatter
 from .core.objects.txion import Txion
 from .core.objects.block import Block
+from .core.objects.telegraph import Telegraph
 
 
 class AlexandryTest:
@@ -36,15 +37,14 @@ class AlexandryTest:
 
     CHAIN_PATH = '/core/datas/chain/'
 
-    BLOCKCHAIN_PATH = os.path.dirname(__file__) + CHAIN_PATH + 'blockchain_test.json'
     BUILDER_PATH = os.path.dirname(__file__) + CHAIN_PATH + 'builder_test.json'
+    BLOCKCHAIN_PATH = os.path.dirname(__file__) + CHAIN_PATH + 'blockchain_test.json'
 
     TXION_PATH = os.path.dirname(__file__) + CHAIN_PATH + 'txion_test.json'
     TELEGRAPH_PATH = os.path.dirname(__file__) + CHAIN_PATH + 'telegraph_test.json'
 
     INITIAL_HASH = 'Hello There, lets start a chain !'
     MAX_TX_PER_BLOCK = 10
-    BUILDER = os.path.dirname(__file__) + CHAIN_PATH + 'builder_test.json'
 
     @staticmethod
     def block_index(blockchain):
@@ -77,6 +77,15 @@ class AlexandryTest:
                          item.amount,
                          item.timestamp,
                          True, item.hash)
+
+    @staticmethod
+    def convert_db_to_telegraph(item):
+        if item is not None:
+            return Telegraph(item.expeditor,
+                             item.destinator,
+                             item.message,
+                             item.timestamp,
+                             True, item.hash)
 
     @staticmethod
     def convert_builder(db_builder):

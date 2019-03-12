@@ -1,10 +1,9 @@
 {
   "type" : "object",
   "properties" : {
-    "index" : {"type" : "number"},
     "expeditor" : {"type" : "string"},
     "destinator" : {"type" : "string"},
-    "amount" : {"type" : "string",
+    "message" : {"type" : "string",
     "timestamp" : {"type" : "string"},
     "hash" : {"type" : "string"}}
   },

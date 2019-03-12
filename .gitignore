@@ -106,3 +106,15 @@ venv.bak/
 blockchain/\.DS_Store
 
 blockchain/core/\.DS_Store
+
+\.DS_Store
+
+\.idea/Alexandry\.iml
+
+\.idea/misc\.xml
+
+\.idea/modules\.xml
+
+\.idea/vcs\.xml
+
+\.idea/workspace\.xml
