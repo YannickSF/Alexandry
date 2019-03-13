@@ -106,6 +106,7 @@ class AlexandryTest:
 
     TRX_URI_BLOCK = '/trx/block'
     TRX_URI_TXION = '/trx/txion'
+    TRX_URI_TELEGRAPH = '/trx/telegraph'
 
 
 # Env Var

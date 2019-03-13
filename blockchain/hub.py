@@ -53,24 +53,17 @@ class Telegraph(Resource):
 
 class TrxBlock(Resource):
     def post(self):
-        block = {}
-
-        if client.worker.callback_validate_block(block):
-            client.blockchain.insert_block(block)
-            return {'status': True}
-        else:
-            return {'status': False}
+        pass
 
 
 class TrxTxion(Resource):
     def post(self):
-        txion = {}
+        pass
 
-        if client.worker.callback_validate_txion(txion):
-            client.blockchain.insert_txion(txion)
-            return {'status': True}
-        else:
-            return {'status': False}
+
+class TrxTelegraph(Resource):
+    def post(self):
+        pass
 
 
 api.add_resource(Blockchain, '/')
@@ -80,6 +73,7 @@ api.add_resource(Telegraph, '/telegraph', '/telegraph/<string:hash>')
 
 api.add_resource(TrxBlock, CONFIG.TRX_URI_BLOCK)
 api.add_resource(TrxTxion, CONFIG.TRX_URI_TXION)
+api.add_resource(TrxTelegraph, CONFIG.TRX_URI_TELEGRAPH)
 
 
 if __name__ == '__main__':
