@@ -11,11 +11,6 @@ class Txion:
         self.timestamp = timestamp
         self.hash = None
 
-        if serial is False:
-            self._bc_format()
-        else:
-            self.hash = hash
-
     def _bc_format(self):
         sha = hashlib.sha256()
         payload = {'index': self.index,

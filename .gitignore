@@ -118,3 +118,5 @@ blockchain/core/\.DS_Store
 \.idea/vcs\.xml
 
 \.idea/workspace\.xml
+
+.idea/
