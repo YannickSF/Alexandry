@@ -1,17 +1,21 @@
 
 import datetime
 from .config import CONFIG
-# remove 'Main.' on linux terminal
 
-from .database import BlockchainDB, TxionDB, Query
+from .database import BlockchainDB, UNTxionsDB, TxionsDB, Query
 from core.objects.block import Block
 from core.objects.txion import Txion
+
+
+MAX_COIN = 21000000000
+REWARD = 25
 
 
 class Blockchain:
     def __init__(self):
         self._data_to_validate = []
 
+    """ Blockchain """
     @staticmethod
     def get_blockchain():
         return BlockchainDB.all()
@@ -42,12 +46,8 @@ class Blockchain:
         QBlock = Query()
         return BlockchainDB.find_first(QBlock.index == id)
 
-    @staticmethod
-    def insert_block(block):
-        BlockchainDB.insert(block)
-
     """ Txion """
-    def create_txion(self, expeditor, destinator, amount):
+    def transfer(self, expeditor, destinator, amount):
         tmpstp = datetime.datetime.now()
         index = CONFIG.txion_index(self)
 
@@ -58,19 +58,17 @@ class Blockchain:
                           tmpstp.strftime('%a, %d %b %Y %H:%M:%S'))
 
         self._data_to_validate.append(new_txion.__repr__())
-        TxionDB.insert(new_txion)
+        UNTxionsDB.insert(new_txion)
         return new_txion.__repr__()
 
     @staticmethod
     def get_txion_by_id(id):
+        # controler UNTxionDB
         QTxion = Query()
-        return TxionDB.insert(QTxion.index == id)
+        return TxionsDB.insert(QTxion.index == id)
 
     @staticmethod
     def get_txion_by_hash(hash):
+        # controler UNTxionDB
         QTxion = Query()
-        return TxionDB.find_first(QTxion.hash == hash)
-
-    @staticmethod
-    def insert_txion(txion):
-        TxionDB.insert(txion)
+        return TxionsDB.find_first(QTxion.hash == hash)

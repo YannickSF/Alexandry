@@ -73,4 +73,7 @@ class _Table:
 
 
 BlockchainDB = _Table('blockchain')
-TxionDB = _Table('txion')
+WalletsDB = _Table('wallets')
+TxionsDB = _Table('txions')
+UNTxionsDB = _Table('un_txions')
+
