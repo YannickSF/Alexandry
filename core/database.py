@@ -5,7 +5,7 @@ from tinydb import TinyDB, Query
 
 # Pour fonctionner créer un répertoire 'datas'.
 def _data_path(table_name):
-    return os.path.dirname(__file__) + '/datas/{0}.json'.format(table_name)
+    return os.path.dirname(__file__) + '/../datas/{0}.json'.format(table_name)
 
 
 class _Table:
@@ -75,5 +75,5 @@ class _Table:
 BlockchainDB = _Table('blockchain')
 WalletsDB = _Table('wallets')
 TxionsDB = _Table('txions')
-UNTxionsDB = _Table('un_txions')
+UNTxionsDB = _Table('untxions')
 

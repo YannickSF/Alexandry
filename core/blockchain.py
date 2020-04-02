@@ -1,18 +1,18 @@
 
 import datetime
-from .config import CONFIG
+from .config import CONFIG, Singleton
 
 from .database import BlockchainDB, UNTxionsDB, TxionsDB, Query
+
 from core.objects.block import Block
-from core.objects.txion import Txion
 
 
 MAX_COIN = 21000000000
-REWARD = 25
+REWARD = 100
 
 
 class Blockchain:
-    def __init__(self):
+    def __init__(self, metaclass=Singleton):
         self._data_to_validate = []
 
     """ Blockchain """
@@ -29,11 +29,12 @@ class Blockchain:
         tmpstp = datetime.datetime.now()
 
         new_block = Block(CONFIG.block_index(self),
-                          self._data_to_validate,
+                          UNTxionsDB.all(),
                           tmpstp.strftime('%a, %d %b %Y %H:%M:%S'),
                           self._block_last_hash())
 
         BlockchainDB.insert(new_block.__repr__())
+        UNTxionsDB.purge()
         return new_block
 
     @staticmethod
@@ -47,28 +48,35 @@ class Blockchain:
         return BlockchainDB.find_first(QBlock.index == id)
 
     """ Txion """
-    def transfer(self, expeditor, destinator, amount):
-        tmpstp = datetime.datetime.now()
-        index = CONFIG.txion_index(self)
-
-        new_txion = Txion(index,
-                          expeditor,
-                          destinator,
-                          amount,
-                          tmpstp.strftime('%a, %d %b %Y %H:%M:%S'))
-
-        self._data_to_validate.append(new_txion.__repr__())
-        UNTxionsDB.insert(new_txion)
-        return new_txion.__repr__()
+    @staticmethod
+    def transfer(txion):
+        # validate txion
+        UNTxionsDB.insert(txion)
+        return txion.__repr__()
 
     @staticmethod
     def get_txion_by_id(id):
-        # controler UNTxionDB
         QTxion = Query()
-        return TxionsDB.insert(QTxion.index == id)
+        tx = TxionsDB.insert(QTxion.index == id)
+        if tx is None:
+            return UNTxionsDB.insert(QTxion.index == id)
+        return tx
 
     @staticmethod
     def get_txion_by_hash(hash):
-        # controler UNTxionDB
         QTxion = Query()
-        return TxionsDB.find_first(QTxion.hash == hash)
+        tx = TxionsDB.find_first(QTxion.hash == hash)
+        if tx is None:
+            return UNTxionsDB.find_first(QTxion.hash == hash)
+        return tx
+
+    @staticmethod
+    def get_txion_by_account(address):
+        QTxion = Query()
+        dtxs = TxionsDB.find(QTxion.destinator == address)
+        edts = TxionsDB.find(QTxion.expeditor == address)
+
+        un_dtxs = UNTxionsDB.find(QTxion.destinator == address)
+        un_edts = UNTxionsDB.find(QTxion.expeditor == address)
+
+        return dtxs + un_dtxs, edts + un_edts
