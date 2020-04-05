@@ -2,9 +2,9 @@
 import datetime
 from .config import CONFIG, Singleton
 
-from .database import BlockchainDB, UNTxionsDB, TxionsDB, Query
+from blockchain.libs.database import BlockchainDB, UNTxionsDB, TxionsDB, Query
 
-from core.objects.block import Block
+from blockchain.objects.block import Block
 
 
 MAX_COIN = 21000000000

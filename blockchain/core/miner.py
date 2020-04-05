@@ -1,6 +1,6 @@
 
-from core.blockchain import REWARD
-from core.database import BlockchainDB
+from blockchain.blockchain import REWARD
+from blockchain.libs.database import BlockchainDB
 
 
 class Miner:

@@ -1,9 +1,9 @@
 
 import datetime
 
-from core.database import WalletsDB, TxionsDB
-from core.objects.txion import Txion
-from core.blockchain import Blockchain
+from blockchain.libs.database import TxionsDB
+from blockchain.objects.txion import Txion
+from blockchain.blockchain import Blockchain
 
 
 class Wallet:

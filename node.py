@@ -1,7 +1,9 @@
 
-from core.blockchain import Blockchain
-from core.func.wallet import Wallet
-from core.func.miner import Miner
+from blockchain.blockchain import Blockchain
+from blockchain.core.wallet import Wallet
+from blockchain.core.miner import Miner
+
+from blockchain.libs.hmrsa import generate_keypair
 
 
 class Node:
@@ -9,7 +11,8 @@ class Node:
 
 
 def main():
-    pass
+    x, y = generate_keypair(3, 13)
+    print(x, y)
 
 
 if __name__ == '__main__':
